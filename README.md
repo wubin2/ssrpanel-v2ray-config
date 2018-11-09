@@ -51,7 +51,7 @@ $ systemctl restart ssrpanel.service  #重启ssrpanel.service服务
 $ cd /usr/local/ssrpanel-v2ray
 $ java -jar ssrpanel-v2ray-0.0.2.jar
 ```
-### 卸载官方v2ray程序
+### 如果之前有安装过官方v2ray程序，请卸载
 `$ rm -rf /usr/bin/v2ray && rm -rf /usr/local/bin/v2ray && rm -rf /var/log/v2ray && rm -rf /etc/systemd/system/v2ray.service && rm -rf /etc/init.d/v2ray`
 
 ### 更新v2ray内核
@@ -73,8 +73,11 @@ $ /usr/local/v2ray-linux-64/v2ray -version  #检查内核版本
 $ systemctl status ssrpanel.service  #检查服务是否成功开始
 ```
 
-### 其他
+### 相关文档
 查看v2ray内核版本：`$ /usr/local/v2ray-linux-64/v2ray -version`
+
 v2ray内核更新：https://github.com/v2ray/v2ray-core/releases
+
 ssrpanel更新：https://github.com/ssrpanel/ssrpanel
+
 ssrpanel-v2ray更新：https://github.com/aiyahacke/ssrpanel-v2ray/releases
