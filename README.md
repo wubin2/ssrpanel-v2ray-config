@@ -1,7 +1,7 @@
 ### 添加节点
 先在SSRPanel后台添加一个V2ray节点 （端口为10086，因为ssrpanel-v2ray里的config.json里的默认配置是10086）
-### 安装JDK8
-```shell
+### debian安装JDK8
+```
 $ nano /etc/apt/sources.list.d/java-8-debian.list  #添加下面两行java源
 deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main
 deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main
@@ -11,7 +11,8 @@ $ apt-get update
 $ apt-get install openjdk-8-jdk
 ```
 ### 安装ssrpanel-v2ray控制台和v2ray内核
-```shell
+本项目默认安装路径为/usr/local/
+```
 $ cd /usr/local
 $ wget https://github.com/aiyahacke/ssrpanel-v2ray/releases/download/0.0.2/ssrpanel-v2ray-0.0.2.zip  #ssrpanel-v2ray控制台
 $ apt-get install zip  #首次安装解压软件
@@ -25,7 +26,7 @@ $ cp /usr/local/ssrpanel-v2ray/config.json /usr/local/v2ray-linux-64/  #修改co
 $ nano /etc/systemd/system/ssrpanel.service  #添加服务自启动
 ```
 ssrpanel.service自启动内容如下：
-```bash
+```
 [Unit]
 Description=ssrpanel
 After=network.target
@@ -38,7 +39,7 @@ ExecStart=/usr/bin/java -jar /usr/local/ssrpanel-v2ray/ssrpanel-v2ray-0.0.2.jar
 [Install]
 WantedBy=multi-user.target
 ```
-```shell
+```
 $ systemctl daemon-reload  #刷新自启服务列表
 $ systemctl enable ssrpanel.service  #激活ssrpanel.service服务
 $ systemctl start ssrpanel.service  #启动ssrpanel.service服务
@@ -47,7 +48,7 @@ $ systemctl stop ssrpanel.service  #停止ssrpanel.service服务
 $ systemctl restart ssrpanel.service  #重启ssrpanel.service服务
 ```
 ### 测试ssrpanel-v2ray是否安装成功
-```shell
+```
 $ cd /usr/local/ssrpanel-v2ray
 $ java -jar ssrpanel-v2ray-0.0.2.jar
 ```
@@ -57,16 +58,16 @@ $ java -jar ssrpanel-v2ray-0.0.2.jar
 ### 更新v2ray内核
 备份下载配置文件 `/usr/local/v2ray-linux-64/config.json`
 v2ray内核地址：https://github.com/v2ray/v2ray-core/releases
-```shell
+```
 $ cd /usr/local  #程序安装目录
 $ wget https://github.com/v2ray/v2ray-core/releases/download/v4.3/v2ray-linux-64.zip  #更改最新内核的下载地址
 $ systemctl stop ssrpanel.service  #停止服务
 $ rm -rf /usr/local/v2ray-linux-64  #删除v2ray内核目录
 $ unzip v2ray-linux-64.zip -d v2ray-linux-64  #解压缩v2ray-linux-64.zip
-$ rm -rf v2ray-linux-64.zip  #v2ray-linux-64.zip
+$ rm -rf v2ray-linux-64.zip  #删除v2ray-linux-64.zip
 ```
 上传 config.json 到程序安装目录`/usr/local/v2ray-linux-64/`
-```shell
+```
 $ chmod -R a+x v2ray-linux-64  #修改目录执行权限
 $ systemctl start ssrpanel.service  #启动服务
 $ /usr/local/v2ray-linux-64/v2ray -version  #检查内核版本
